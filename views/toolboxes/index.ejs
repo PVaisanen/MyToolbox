@@ -1,1 +1,10 @@
-All toolboxes
+<h2>Search Toolboxes</h2>
+<form action="/toolboxes" method="GET">
+    <label>Name</label>
+    <input type="text" name="name" value="<%=searchOptions.name %>">
+    <button type="submit">Search</button>
+</form>
+<br>
+<% toolboxes.forEach(toolbox => { %> 
+    <div><%=toolbox.name %></div>
+<% })%> 
