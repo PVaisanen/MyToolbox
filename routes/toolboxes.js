@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const Toolbox = require('../models/toolbox')
 
-// All Items Route
+// All Toolboxes Route
 router.get('/', async (req, res) => {
    let searchOptions = {}
    if (req.query.name != null && req.query.name !== '') {
@@ -19,12 +19,13 @@ router.get('/', async (req, res) => {
     }
 })
 
-// New Item Route
+// New Toolbox Route
 router.get('/new', (req,res) => {
+    const newToolbox = new Toolbox()
     res.render('toolboxes/new', { toolbox: new Toolbox() })
 })
 
-// create Item
+// create Toolbox
 router.post('/', async (req, res) => {
     const toolbox = new Toolbox({
         name: req.body.name
@@ -37,7 +38,7 @@ router.post('/', async (req, res) => {
         res.render('toolboxes/new', {
         toolbox: toolbox,  
         errorMessage: 'Error creating Toolbox'
-      })
+        })
     }
 })
 

@@ -1,0 +1,46 @@
+<div>
+   <label>Tool name</label>
+   <input type="text" name="name" value="<%= tool.name %>">
+</div>
+<div>
+   <label>Tool SN</label>
+   <input type="text" name="qrCode" value="<%= tool.qrCode %>">
+</div>
+
+<div>
+   <label>Toolbox</label>
+   <select name="toolbox">
+      <% toolboxes.forEach(toolbox => { %>
+         <% if (toolbox.id === tool.toolbox) { %>
+           <option selected label="<%= toolbox.name %>" value="<%= toolbox.id %>">
+         <% } else { %>
+           <option label="<%= toolbox.name %>" value="<%= toolbox.id %>">
+         <% } %>
+       <% }) %>
+	</select>	   
+</div> 
+
+<div>
+   <label>Price</label>
+   <input type="number" name="price" min="1" value="<%= tool.price %>">
+</div>
+<div>
+   <label>Purchase date</label>
+   <input type="date" name="createdDate"
+    value="<%= tool.createdDate == null ? '' : tool.createdDate.toISOString().split('T')[0] %>">
+<div>
+   <label>Available</label>
+   <input type="checkbox" name="available" checked value="<%= tool.available %>">
+</div>
+<div>
+   <label>Borrower</label>
+   <input type="text" name="borrower" value="<%= tool.borrower %>">
+</div>
+<div>
+   <label>Tool picture</label>
+   <input type="file" name="toolImage">
+</div>
+<div>
+   <label>Description</label>
+   <textarea name="description"><%= tool.description %></textarea>
+</div>

@@ -1,0 +1,18 @@
+<h2>Search Tools</h2>
+<form action="/tools" method="GET">
+    <div>
+        <label>Name</label>
+        <input type="text" name="name" value="<%=searchOptions.name %>">
+    </div>
+    <div>
+        <label>Tool SN</label>
+        <input type="text" name="qrCode" value="<%=searchOptions.qrCode %>">
+    </div>
+    <button type="submit">Search</button>
+</form>
+<br>
+<div>
+    <% tools.forEach(tool => { %> 
+    <img height="150" width="150" src="<%= tool.toolImagePath %> ">
+    <% })%> 
+</div>

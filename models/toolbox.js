@@ -7,4 +7,4 @@ const toolboxSchema = new mongoose.Schema({
     }
 })
 
-module.exports = mongoose.model('Toolbox',toolboxSchema)
+module.exports = mongoose.model('Toolbox', toolboxSchema)
