@@ -1,18 +1,8 @@
 const express = require('express')
 const router = express.Router()
-const multer = require('multer')
-const path = require('path')
-const fs = require('fs')
 const Tool = require('../models/tool')
 const Toolbox = require('../models/toolbox')
-const uploadPath = path.join('public',Tool.toolImageBasePath)
 const imageMimeTypes = ['image/jpeg', 'image/png', 'images/gif']
-const upload = multer({
-   dest: uploadPath,
-   fileFilter: (req, file, callback) => {
-     callback(null, imageMimeTypes.includes(file.mimetype))
-   }
- })
 
 // All Tools Route
 router.get('/', async (req, res) => {
@@ -46,10 +36,8 @@ router.get('/new', async (req,res) => {
 })
 
 // create Tool route
-router.post('/', upload.single('toolImage'), async (req,res) => {
-   const fileName = req.file != null ? req.file.filename : null
-  
-   const tool = new Tool({
+router.post('/', async (req,res) => {
+     const tool = new Tool({
       name: req.body.name,
       qrCode: req.body.qrCode,
       toolbox: req.body.toolbox,
@@ -58,33 +46,24 @@ router.post('/', upload.single('toolImage'), async (req,res) => {
       available: Boolean(req.body.available),
       borrower: req.body.borrower,
       lastupdateDate: new Date(req.body.createdDate),
-      toolImageName: fileName,
       description: req.body.description
    })
+   saveImage(tool,req.body.toolImage)
 
    try {
-     // console.log("Tool :" + tool)
+           // console.log("Tool :" + tool)
       const newTool = await tool.save()
      // res.redirect('tools/$(newTool.id)')
       res.redirect(`tools`)
    } catch {
-      if (tool.toolImageName != null) {
-         removeToolImage(tool.toolImageName)
-      } 
       renderNewPage(res, tool, true)
 
-      res.render('tools/new', {
+/*       res.render('tools/new', {
          tool: tool,  
-         errorMessage: 'Error creating Tool'
-      })
+         errorMessage: 'Error creating Tool' 
+      }) */
    }
 })
-
-function removeToolImage(fileName) {
-   fs.unlink(path.join(uploadPath, fileName), err => {
-     if (err) console.error(err)
-   })
- } 
 
  async function renderNewPage(res, tool, hasError = false) {
    try {
@@ -101,6 +80,15 @@ function removeToolImage(fileName) {
      console.log("renderNewPage catch")
      res.redirect('/tools')
    }
+ }
+
+ function saveImage(tool, imageEncoded) {
+    if (imageEncoded == null) return
+    const image = JSON.parse(imageEncoded)
+    if (image != null && imageMimeTypes.includes(image.type)) {
+       tool.toolImage = new Buffer.from(image.data, 'base64')
+       tool.toolImageType = image.type
+    }
  }
   
 module.exports = router

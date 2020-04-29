@@ -1,7 +1,4 @@
 const mongoose = require('mongoose')
-const path = require('path')
-
- const toolImageBasePath = 'uploads/toolImages'
 
 const toolSchema = new mongoose.Schema({
    name: {
@@ -39,9 +36,13 @@ const toolSchema = new mongoose.Schema({
         required: true,
         default: Date.now
     },
-    toolImageName: {
-        type: String,
+    toolImage: {
+        type: Buffer,
         required: true
+    },
+    toolImageType: {
+        type: String,
+        require: true
     },
     description: {
         type: String,
@@ -50,10 +51,9 @@ const toolSchema = new mongoose.Schema({
 })
 
 toolSchema.virtual('toolImagePath').get(function() {
-    if (this.toolImageName != null) {
-      return path.join('/', toolImageBasePath, this.toolImageName)
+    if (this.toolImage != null && this.toolImageType != null) {
+      return `data:${this.toolImageType};charset=utf-8;base64,${this.toolImage.toString('base64')}`
     } 
   })
 
 module.exports = mongoose.model('Tool', toolSchema)
-module.exports.toolImageBasePath = toolImageBasePath
