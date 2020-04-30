@@ -6,7 +6,6 @@ const imageMimeTypes = ['image/jpeg', 'image/png', 'images/gif']
 
 // All Tools Route
 router.get('/', async (req, res) => {
-  
    let query = Tool.find()
 
    if (req.query.name != null && req.query.name !== '') {
@@ -16,9 +15,8 @@ router.get('/', async (req, res) => {
    if (req.query.qrCode != null && req.query.qrCode !== '') {
       query =  query.regex('qrCode', new RegExp(req.query.qrCode, 'i'))
   }
-  
-    try {
-        const tools = await query.exec() //Tool.find(searchOptions)
+      try {
+        const tools = await query.exec()
         res.render('tools/index', { 
             tools: tools, 
             searchOptions: req.query 
@@ -26,13 +24,11 @@ router.get('/', async (req, res) => {
     } catch {
         res.redirect('/')
     }
- //   res.send('All Tools')
 })
 
 // New Tool Route
 router.get('/new', async (req,res) => {
    renderNewPage(res, new Tool())
-  // res.render('tools/new', { tool: new Tool() })
 })
 
 // create Tool route
@@ -51,23 +47,15 @@ router.post('/', async (req,res) => {
    saveImage(tool,req.body.toolImage)
 
    try {
-           // console.log("Tool :" + tool)
       const newTool = await tool.save()
-     // res.redirect('tools/$(newTool.id)')
       res.redirect(`tools`)
    } catch {
       renderNewPage(res, tool, true)
-
-/*       res.render('tools/new', {
-         tool: tool,  
-         errorMessage: 'Error creating Tool' 
-      }) */
    }
 })
 
  async function renderNewPage(res, tool, hasError = false) {
    try {
-      
      const toolboxes = await Toolbox.find({})
      const params = {
        toolboxes: toolboxes,
@@ -77,8 +65,7 @@ router.post('/', async (req,res) => {
      if (hasError) params.errorMessage = 'Error Creating Tool'
       res.render('tools/new', params)
    } catch {
-     console.log("renderNewPage catch")
-     res.redirect('/tools')
+      res.redirect('/tools')
    }
  }
 

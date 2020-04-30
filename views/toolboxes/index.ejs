@@ -7,4 +7,8 @@
 <br>
 <% toolboxes.forEach(toolbox => { %> 
     <div><%=toolbox.name %></div>
+    <a href="/toolboxes/<%= toolbox.id %>">View</a>
+    <a href="/toolboxes/<%= toolbox.id %>/edit">Edit</a>
+    <%- include('../partials/deleteForm', 
+        { url: `/toolboxes/${toolbox.id}` }) %>
 <% })%> 

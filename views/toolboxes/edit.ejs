@@ -1,0 +1,8 @@
+<h2>Edit toolbox</h2>
+<form action="/toolboxes/<%= toolbox.id %>?_method=PUT" method="POST">
+    <%- include('_form_fields') %>
+    <a href="/toolboxes/<% toolbox.id %>">Cancel</a>
+    <button type="submit">Update</button>
+</form>
+
+
