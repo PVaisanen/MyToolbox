@@ -1,6 +1,8 @@
 <h2>Recently updated tools</h2>
 <div>
     <% tools.forEach(tool => { %> 
-    <img height="150" width="150" src="<%= tool.toolImagePath %> ">
+        <a href="/tools/<%= tool.id %>">
+            <img height="150" width="150" src="<%= tool.toolImagePath %> ">
+        </a>
     <% })%> 
 </div>

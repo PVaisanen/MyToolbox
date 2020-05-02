@@ -4,6 +4,8 @@
 <% if (toolsInToolbox.length > 0) { %> 
     <h2>Tools in toolbox</h2>
     <% toolsInToolbox.forEach(tool => { %> 
-        <img height="150" width="150" src="<%= tool.toolImagePath %> ">
-        <% })%> 
+        <a href="/tools/<%= tool.id %>">
+            <img height="150" width="150" src="<%= tool.toolImagePath %> ">
+        </a>
+    <% })%> 
 <% } %> 

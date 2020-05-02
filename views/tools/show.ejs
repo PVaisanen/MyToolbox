@@ -1,0 +1,14 @@
+<h2><%= tool.name %> </h2>
+<img src="<%= tool.toolImagePath %>">
+<div>Serialnumber: <%= tool.qrCode %> </div>
+<div>Toolbox: <%= tool.toolbox.name %> </div>
+<div>Serialnumber: <%= tool.qrcode %> </div>
+<div>Purhaced Date: <%= tool.createdDate.toDateString() %></div>
+<div>Tool price: <%= tool.price %></div>
+<div>Available: <%= tool.available %></div>
+<div>Description: <%= tool.description %></div>
+<div>Borrower: <%= tool.borrower %></div>
+
+<a href="/tools/<%= tool.id %>/edit">Edit</a>
+<%- include('../partials/deleteForm', { url : `/tools/${tool.id}` }) %>
+<a href="/toolboxes/<%= tool.toolbox.id %>/edit">View toolbox</a>

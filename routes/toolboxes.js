@@ -42,7 +42,7 @@ router.post('/', async (req, res) => {
     }
 })
 
-// show
+// show Toolbox route
 router.get('/:id', async (req,res) => {
     try {
         const toolbox = await Toolbox.findById(req.params.id)
@@ -57,7 +57,7 @@ router.get('/:id', async (req,res) => {
     }
 })
 
-// edit
+// edit Toolbox route
 router.get('/:id/edit', async (req, res) => {
     try {
         const toolbox = await Toolbox.findById(req.params.id)
@@ -67,7 +67,7 @@ router.get('/:id/edit', async (req, res) => {
     }
 })
 
-// Update
+// update
 router.put('/:id', async (req, res) => {
     let toolbox
     try {
