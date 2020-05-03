@@ -1,8 +1,10 @@
 <h2 class="page-header"><%= toolbox.name %></h2>
-<a href="/toolboxes/<%= toolbox.id %>/edit">Edit</a>
-<%- include('../partials/deleteForm', { url: `/toolboxes/${toolbox.id}` }) %> 
+<div class="btn-row">
+    <a class="btn btn-primary" href="/toolboxes/<%= toolbox.id %>/edit">Edit</a>
+    <%- include('../partials/deleteForm', { url: `/toolboxes/${toolbox.id}` }) %> 
+</div>
 <% if (toolsInToolbox.length > 0) { %> 
-    <h2>Tools in toolbox</h2>
+    <h2 class="page-header">Tools in toolbox</h2>
     <% toolsInToolbox.forEach(tool => { %> 
         <a href="/tools/<%= tool.id %>">
             <img height="150" width="150" src="<%= tool.toolImagePath %> ">

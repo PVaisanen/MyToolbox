@@ -1,14 +1,18 @@
 <h2 class="page-header">Search Tools</h2>
 <form action="/tools" method="GET">
-    <div>
-        <label>Name</label>
-        <input type="text" name="name" value="<%=searchOptions.name %>">
+    <div class="form-row">
+        <div class="form-item">
+            <label>Name</label>
+            <input type="text" name="name" value="<%=searchOptions.name %>">
+        </div>
+        <div class="form-item">
+         <label>Serialnumber</label>
+            <input type="text" name="qrCode" value="<%=searchOptions.qrCode %>">
+        </div>
     </div>
-    <div>
-        <label>Serialnumber</label>
-        <input type="text" name="qrCode" value="<%=searchOptions.qrCode %>">
+    <div class="form-row form-row-end">
+        <button class="btn btn-primary" type="submit">Search</button>
     </div>
-    <button type="submit">Search</button>
 </form>
 <br>
 <div>
