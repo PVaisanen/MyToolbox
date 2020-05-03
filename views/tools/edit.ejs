@@ -1,6 +1,8 @@
 <h2 class="page-header">Edit Tool</h2>
 <form action="/tools/<%= tool.id %>?_method=PUT" method="POST"> 
     <%- include('_form_fields') %>
-    <a href="/tools">Cancel</a>
-    <button type="submit">Update</button>
+   <div class="form-row form-row-end btn-row">
+        <a class="btn btn-danger" href="/tools">Cancel</a>
+        <button class="btn bnt-primary" type="submit">Update</button>
+    </div>
 </form>
