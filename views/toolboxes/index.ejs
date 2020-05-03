@@ -1,4 +1,4 @@
-<h2>Search Toolboxes</h2>
+<h2 class="page-header">Search Toolboxes</h2>
 <form action="/toolboxes" method="GET">
     <label>Name</label>
     <input type="text" name="name" value="<%=searchOptions.name %>">
@@ -7,8 +7,11 @@
 <br>
 <% toolboxes.forEach(toolbox => { %> 
     <div><%=toolbox.name %></div>
-    <a href="/toolboxes/<%= toolbox.id %>">View</a>
-    <a href="/toolboxes/<%= toolbox.id %>/edit">Edit</a>
-    <%- include('../partials/deleteForm', 
-        { url: `/toolboxes/${toolbox.id}` }) %>
+        <div class="btn-row">
+            <a class="btn btn-primary" href="/toolboxes/<%= toolbox.id %>">View</a>
+            <a class="btn btn-primary" href="/toolboxes/<%= toolbox.id %>/edit">Edit</a>
+            <%- include('../partials/deleteForm', 
+            { url: `/toolboxes/${toolbox.id}` }) %>
+        </div>
+
 <% })%> 

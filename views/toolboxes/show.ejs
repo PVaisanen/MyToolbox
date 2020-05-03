@@ -1,4 +1,4 @@
-<h2><%= toolbox.name %></h2>
+<h2 class="page-header"><%= toolbox.name %></h2>
 <a href="/toolboxes/<%= toolbox.id %>/edit">Edit</a>
 <%- include('../partials/deleteForm', { url: `/toolboxes/${toolbox.id}` }) %> 
 <% if (toolsInToolbox.length > 0) { %> 
